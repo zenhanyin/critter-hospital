@@ -97,12 +97,20 @@ function readPack(locale) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
+function sameObject(left, right) {
+  return JSON.stringify(left || {}) === JSON.stringify(right || {});
+}
+
 function writePack(locale, strings, sources) {
   fs.mkdirSync(i18nDir, { recursive: true });
+  const previous = readPack(locale);
+  const generatedAt = sameObject(previous.strings, strings) && sameObject(previous.sources, sources)
+    ? previous.generatedAt || new Date().toISOString()
+    : new Date().toISOString();
   const pack = {
     locale,
     sourceLocale: baseLocale,
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     strings,
     sources
   };
