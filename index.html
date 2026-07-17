@@ -1,0 +1,983 @@
+<div id="sprite-clinic-app" class="clinic-shell">
+  <main class="clinic-layout" aria-label="Midnight sprite animal clinic game">
+    <section class="clinic-hero" aria-live="polite">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow">Night <span id="nightNumber">1</span> / 3</p>
+          <h1>Midnight Sprite Clinic</h1>
+        </div>
+        <div class="shift-clock" aria-label="Shift progress">
+          <span id="caseCounter">Case 1 of 6</span>
+          <div class="clock-track"><span id="clockFill"></span></div>
+        </div>
+      </div>
+
+      <div class="clinic-stage">
+        <div class="room-glow" aria-hidden="true"></div>
+        <div id="patientAura" class="patient-aura calm"></div>
+        <div id="patientSprite" class="patient-sprite" role="img" aria-label="Current patient">
+          <div class="ears"></div>
+          <div class="head">
+            <span class="eye left"></span>
+            <span class="eye right"></span>
+            <span class="cheek left"></span>
+            <span class="cheek right"></span>
+            <span class="mouth"></span>
+          </div>
+          <div class="body">
+            <span class="belly"></span>
+          </div>
+          <div class="tail"></div>
+          <div id="spriteMarks" class="sprite-marks"></div>
+        </div>
+        <div class="desk">
+          <span class="desk-light"></span>
+          <span class="desk-card"></span>
+          <span class="desk-mug"></span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="triage-panel" aria-label="Triage controls">
+      <div class="stats-row">
+        <div class="stat"><span>Sanity</span><strong id="sanityValue">100</strong></div>
+        <div class="stat"><span>Wage</span><strong id="wageValue">$0</strong></div>
+        <div class="stat"><span>Errors</span><strong id="errorValue">0</strong></div>
+      </div>
+
+      <article class="case-card">
+        <div class="case-header">
+          <div>
+            <p id="patientKind" class="eyebrow">Moonbun</p>
+            <h2 id="patientName">Luma</h2>
+          </div>
+          <span id="riskBadge" class="risk-badge">Unknown</span>
+        </div>
+        <p id="caseText" class="case-text"></p>
+        <ul id="clueList" class="clue-list"></ul>
+      </article>
+
+      <div class="action-grid" aria-label="Choose triage action">
+        <button type="button" class="action-btn" data-action="treat">
+          <span>Treat</span><small>Normal care</small>
+        </button>
+        <button type="button" class="action-btn" data-action="quarantine">
+          <span>Quarantine</span><small>Contain anomaly</small>
+        </button>
+        <button type="button" class="action-btn" data-action="comfort">
+          <span>Comfort</span><small>Calm sprite</small>
+        </button>
+        <button type="button" class="action-btn" data-action="alarm">
+          <span>Alarm</span><small>Emergency seal</small>
+        </button>
+      </div>
+
+      <div id="resultBox" class="result-box" aria-live="polite"></div>
+      <button id="nextButton" type="button" class="primary-btn">Start shift</button>
+    </aside>
+  </main>
+
+  <section class="log-panel" aria-label="Shift log">
+    <h2>Shift log</h2>
+    <ol id="logList"></ol>
+  </section>
+</div>
+
+<style>
+  :root {
+    --clinic-bg: #141820;
+    --clinic-panel: #202632;
+    --clinic-panel-2: #2a3140;
+    --clinic-text: #f6f0e8;
+    --clinic-muted: #b8c2cf;
+    --clinic-line: rgba(255,255,255,.14);
+    --clinic-gold: #ffd26f;
+    --clinic-mint: #84e7bf;
+    --clinic-pink: #ff91b6;
+    --clinic-blue: #8fc8ff;
+    --clinic-red: #ff7c7c;
+    --clinic-violet: #b79cff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(132,231,191,.18), transparent 28rem),
+      radial-gradient(circle at 88% 20%, rgba(183,156,255,.16), transparent 26rem),
+      linear-gradient(140deg, #10141b 0%, #1a1f2a 52%, #151923 100%);
+    color: var(--clinic-text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  button { font: inherit; }
+
+  .clinic-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0;
+  }
+
+  .clinic-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, .85fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .clinic-hero,
+  .triage-panel,
+  .log-panel {
+    border: 1px solid var(--clinic-line);
+    background: rgba(32,38,50,.82);
+    backdrop-filter: blur(18px);
+    border-radius: 8px;
+    box-shadow: 0 18px 60px rgba(0,0,0,.28);
+  }
+
+  .clinic-hero {
+    min-height: 640px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topbar,
+  .case-header,
+  .stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .eyebrow {
+    margin: 0 0 5px;
+    color: var(--clinic-muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  h1, h2 {
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  h1 { font-size: clamp(30px, 4vw, 56px); }
+  h2 { font-size: 24px; }
+
+  .shift-clock {
+    min-width: 160px;
+    color: var(--clinic-muted);
+    font-size: 14px;
+    text-align: right;
+  }
+
+  .clock-track {
+    height: 8px;
+    margin-top: 8px;
+    background: rgba(255,255,255,.1);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .clock-track span {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--clinic-mint), var(--clinic-gold));
+    transition: width .35s ease;
+  }
+
+  .clinic-stage {
+    position: relative;
+    min-height: 500px;
+    margin-top: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+    background:
+      linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+      radial-gradient(circle at 50% 24%, rgba(255,210,111,.16), transparent 18rem),
+      linear-gradient(180deg, #202a38 0%, #151a24 68%, #11151d 100%);
+    background-size: 42px 42px, 42px 42px, auto, auto;
+  }
+
+  .room-glow {
+    position: absolute;
+    inset: 12% 12% auto;
+    height: 260px;
+    background: radial-gradient(circle, rgba(143,200,255,.22), transparent 68%);
+    filter: blur(4px);
+  }
+
+  .patient-aura {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    width: 270px;
+    height: 270px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: .48;
+    filter: blur(18px);
+    transition: background .35s ease, opacity .35s ease;
+  }
+
+  .patient-aura.calm { background: var(--clinic-mint); }
+  .patient-aura.weird { background: var(--clinic-violet); }
+  .patient-aura.danger { background: var(--clinic-red); }
+
+  .patient-sprite {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    width: 220px;
+    height: 280px;
+    transform: translate(-50%, -50%);
+    color: var(--sprite-color, #f7c98f);
+    transition: transform .35s ease;
+  }
+
+  .patient-sprite.float {
+    animation: floaty 2.8s ease-in-out infinite;
+  }
+
+  @keyframes floaty {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-12px); }
+  }
+
+  .ears::before,
+  .ears::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    width: 76px;
+    height: 96px;
+    background: currentColor;
+    border: 5px solid rgba(255,255,255,.62);
+    z-index: 1;
+  }
+
+  .ears::before {
+    left: 24px;
+    border-radius: 58% 42% 50% 50%;
+    transform: rotate(-24deg);
+  }
+
+  .ears::after {
+    right: 24px;
+    border-radius: 42% 58% 50% 50%;
+    transform: rotate(24deg);
+  }
+
+  .head {
+    position: absolute;
+    left: 24px;
+    top: 70px;
+    width: 172px;
+    height: 150px;
+    border-radius: 48% 48% 44% 44%;
+    background: currentColor;
+    border: 5px solid rgba(255,255,255,.7);
+    z-index: 2;
+  }
+
+  .eye {
+    position: absolute;
+    top: 58px;
+    width: 18px;
+    height: 26px;
+    border-radius: 999px;
+    background: #26202b;
+    box-shadow: inset 4px 5px 0 rgba(255,255,255,.45);
+  }
+
+  .eye.left { left: 48px; }
+  .eye.right { right: 48px; }
+
+  .cheek {
+    position: absolute;
+    top: 88px;
+    width: 24px;
+    height: 14px;
+    border-radius: 999px;
+    background: rgba(255,145,182,.55);
+  }
+
+  .cheek.left { left: 30px; }
+  .cheek.right { right: 30px; }
+
+  .mouth {
+    position: absolute;
+    left: 78px;
+    top: 88px;
+    width: 20px;
+    height: 12px;
+    border-bottom: 4px solid #26202b;
+    border-radius: 0 0 999px 999px;
+  }
+
+  .body {
+    position: absolute;
+    left: 48px;
+    bottom: 0;
+    width: 124px;
+    height: 116px;
+    border-radius: 48% 48% 38% 38%;
+    background: currentColor;
+    border: 5px solid rgba(255,255,255,.68);
+    z-index: 1;
+  }
+
+  .belly {
+    position: absolute;
+    left: 30px;
+    top: 26px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.45);
+  }
+
+  .tail {
+    position: absolute;
+    right: 8px;
+    bottom: 42px;
+    width: 76px;
+    height: 76px;
+    border: 18px solid currentColor;
+    border-left-color: transparent;
+    border-radius: 50%;
+    transform: rotate(24deg);
+  }
+
+  .sprite-marks span {
+    position: absolute;
+    z-index: 4;
+    background: var(--clinic-violet);
+    color: #171420;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 24px rgba(183,156,255,.65);
+  }
+
+  .mark-star {
+    left: 36px;
+    top: 122px;
+    width: 34px;
+    height: 34px;
+    clip-path: polygon(50% 0%, 61% 34%, 96% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 4% 35%, 39% 34%);
+  }
+
+  .mark-eye {
+    right: 74px;
+    top: 48px;
+    width: 28px;
+    height: 18px;
+    border-radius: 999px;
+  }
+
+  .mark-shadow {
+    left: 94px;
+    bottom: 8px;
+    width: 42px;
+    height: 16px;
+    border-radius: 50%;
+    background: #0c0d12 !important;
+  }
+
+  .desk {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    bottom: 0;
+    height: 112px;
+    background: linear-gradient(180deg, #5d496f, #31283d);
+    border-top: 4px solid rgba(255,255,255,.22);
+  }
+
+  .desk-light,
+  .desk-card,
+  .desk-mug {
+    position: absolute;
+    bottom: 36px;
+    border-radius: 8px;
+  }
+
+  .desk-light {
+    left: 18%;
+    width: 64px;
+    height: 12px;
+    background: var(--clinic-gold);
+    box-shadow: 0 0 32px var(--clinic-gold);
+  }
+
+  .desk-card {
+    left: 46%;
+    width: 92px;
+    height: 48px;
+    background: rgba(255,255,255,.72);
+    transform: rotate(-4deg);
+  }
+
+  .desk-mug {
+    right: 16%;
+    width: 44px;
+    height: 42px;
+    background: var(--clinic-blue);
+  }
+
+  .triage-panel {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--clinic-line);
+    border-radius: 8px;
+    background: rgba(255,255,255,.05);
+  }
+
+  .stat span {
+    display: block;
+    color: var(--clinic-muted);
+    font-size: 12px;
+  }
+
+  .stat strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 24px;
+  }
+
+  .case-card {
+    min-height: 245px;
+    padding: 16px;
+    border: 1px solid var(--clinic-line);
+    border-radius: 8px;
+    background: rgba(255,255,255,.06);
+  }
+
+  .risk-badge {
+    flex: 0 0 auto;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.09);
+    color: var(--clinic-muted);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .case-text {
+    margin: 14px 0;
+    color: var(--clinic-text);
+  }
+
+  .clue-list {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .clue-list li {
+    padding: 9px 10px;
+    border-left: 3px solid var(--clinic-mint);
+    background: rgba(255,255,255,.06);
+    border-radius: 6px;
+    color: var(--clinic-muted);
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .action-btn,
+  .primary-btn {
+    border: 1px solid var(--clinic-line);
+    border-radius: 8px;
+    color: var(--clinic-text);
+    cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+
+  .action-btn {
+    min-height: 74px;
+    padding: 12px;
+    text-align: left;
+    background: rgba(255,255,255,.07);
+  }
+
+  .action-btn:hover,
+  .action-btn:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(255,210,111,.8);
+    background: rgba(255,210,111,.12);
+  }
+
+  .action-btn[disabled] {
+    opacity: .52;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .action-btn span {
+    display: block;
+    font-weight: 800;
+  }
+
+  .action-btn small {
+    display: block;
+    margin-top: 3px;
+    color: var(--clinic-muted);
+  }
+
+  .primary-btn {
+    width: 100%;
+    min-height: 48px;
+    background: linear-gradient(135deg, var(--clinic-mint), var(--clinic-blue));
+    color: #102027;
+    font-weight: 900;
+  }
+
+  .primary-btn:hover,
+  .primary-btn:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .result-box {
+    min-height: 82px;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(0,0,0,.18);
+    color: var(--clinic-muted);
+  }
+
+  .result-box.good { color: var(--clinic-mint); }
+  .result-box.bad { color: var(--clinic-red); }
+
+  .log-panel {
+    margin-top: 18px;
+    padding: 18px;
+  }
+
+  .log-panel h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .log-panel ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .log-panel li {
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.06);
+    color: var(--clinic-muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 900px) {
+    .clinic-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .clinic-hero {
+      min-height: 560px;
+    }
+
+    .log-panel ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .clinic-shell {
+      width: min(100% - 18px, 1180px);
+      padding: 12px 0;
+    }
+
+    .topbar,
+    .case-header,
+    .stats-row {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .shift-clock {
+      min-width: 0;
+      text-align: left;
+    }
+
+    .clinic-hero {
+      min-height: 520px;
+      padding: 14px;
+    }
+
+    .clinic-stage {
+      min-height: 390px;
+      margin-top: 18px;
+    }
+
+    .patient-sprite {
+      width: 176px;
+      height: 224px;
+    }
+
+    .ears::before,
+    .ears::after {
+      width: 60px;
+      height: 76px;
+    }
+
+    .head {
+      left: 18px;
+      top: 56px;
+      width: 140px;
+      height: 122px;
+    }
+
+    .eye.left { left: 38px; }
+    .eye.right { right: 38px; }
+    .mouth { left: 62px; }
+
+    .body {
+      left: 38px;
+      width: 100px;
+      height: 92px;
+    }
+
+    .tail {
+      width: 58px;
+      height: 58px;
+      border-width: 14px;
+    }
+
+    .action-grid,
+    .log-panel ol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+(() => {
+  const cases = [
+    {
+      name: "Luma",
+      kind: "Moonbun",
+      color: "#f7c98f",
+      text: "A round moonbun floats onto the desk with a ribbon tied around one ear.",
+      clues: ["Temperature is warm but stable.", "Shadow stays attached to its paws.", "It hums when the clinic bell rings."],
+      action: "comfort",
+      risk: "Nervous",
+      aura: "calm",
+      marks: []
+    },
+    {
+      name: "Pip",
+      kind: "Moss Fox",
+      color: "#9be0a6",
+      text: "This tiny fox has leaves in its fur and keeps apologizing to the stethoscope.",
+      clues: ["Pulse sounds like rain on glass.", "Eyes track your hand normally.", "Leaves wilt when the lights flicker."],
+      action: "treat",
+      risk: "Normal",
+      aura: "calm",
+      marks: []
+    },
+    {
+      name: "Nini",
+      kind: "Glass Hamster",
+      color: "#9fd8ff",
+      text: "A translucent hamster arrives in a teacup. The intake form has already signed itself.",
+      clues: ["Third eye opens only in reflections.", "No pawprints appear on the desk.", "It smiles when you mention quarantine."],
+      action: "quarantine",
+      risk: "Anomaly",
+      aura: "weird",
+      marks: ["mark-eye", "mark-shadow"]
+    },
+    {
+      name: "Bobo",
+      kind: "Star Calf",
+      color: "#e6b2ff",
+      text: "A sleepy calf sprite has a star-shaped bruise that rotates slowly above its cheek.",
+      clues: ["Breathing is calm.", "The star mark rotates counterclockwise.", "It asks for sugar water exactly three times."],
+      action: "treat",
+      risk: "Treatable",
+      aura: "weird",
+      marks: ["mark-star"]
+    },
+    {
+      name: "Mochi",
+      kind: "Cloud Cat",
+      color: "#f4f1ff",
+      text: "The cloud cat looks adorable, but every clock in the room is now five minutes behind.",
+      clues: ["Purrs in two voices.", "Tail points against gravity.", "Its shadow is under the ceiling lamp."],
+      action: "quarantine",
+      risk: "Anomaly",
+      aura: "weird",
+      marks: ["mark-shadow"]
+    },
+    {
+      name: "Taffy",
+      kind: "Candy Ferret",
+      color: "#ffb2ce",
+      text: "A candy ferret rolls in holding a tiny blanket and a very dramatic cough.",
+      clues: ["Sugar crystals on whiskers.", "Pawprints are visible and normal.", "Cough stops when offered warm milk."],
+      action: "comfort",
+      risk: "Nervous",
+      aura: "calm",
+      marks: []
+    },
+    {
+      name: "Rune",
+      kind: "Ink Owl",
+      color: "#8f8cff",
+      text: "An owl sprite blinks sideways. Its medical tag has tomorrow's date.",
+      clues: ["Feathers drip upward.", "It repeats your last sentence before you say it.", "The exam lamp casts no shadow."],
+      action: "alarm",
+      risk: "Danger",
+      aura: "danger",
+      marks: ["mark-eye", "mark-shadow"]
+    },
+    {
+      name: "Fenn",
+      kind: "Lantern Deer",
+      color: "#ffd26f",
+      text: "A deer sprite carries a glowing lantern between its antlers and bows politely.",
+      clues: ["Lantern dims when it is scared.", "Hoofprints glow, then fade.", "It reacts gently to the nurse bell."],
+      action: "comfort",
+      risk: "Nervous",
+      aura: "calm",
+      marks: []
+    },
+    {
+      name: "Kiki",
+      kind: "Paper Seal",
+      color: "#f0e0c6",
+      text: "A folded seal flops in with a papercut, leaving little origami waves behind.",
+      clues: ["Edges are frayed but not spreading.", "Shadow folds correctly.", "It sneezes confetti after every question."],
+      action: "treat",
+      risk: "Normal",
+      aura: "calm",
+      marks: []
+    },
+    {
+      name: "Velvet",
+      kind: "Mirror Moth",
+      color: "#b79cff",
+      text: "The moth sprite never lands. Its reflection is larger than its body.",
+      clues: ["Wing dust forms tiny door shapes.", "Reflection blinks one beat late.", "Your clipboard lists a patient you never admitted."],
+      action: "quarantine",
+      risk: "Anomaly",
+      aura: "weird",
+      marks: ["mark-eye"]
+    },
+    {
+      name: "Glim",
+      kind: "Button Frog",
+      color: "#84e7bf",
+      text: "A frog wearing a button hat has swallowed a charm and looks deeply embarrassed.",
+      clues: ["Charm chimes inside its belly.", "Eyes are bright and symmetrical.", "It follows the flashlight normally."],
+      action: "treat",
+      risk: "Treatable",
+      aura: "calm",
+      marks: []
+    },
+    {
+      name: "No. 7",
+      kind: "Unknown Kit",
+      color: "#ff7c7c",
+      text: "A kitten-shaped sprite sits perfectly still. The door behind it is still locked from the inside.",
+      clues: ["It has no reflection in the medicine cabinet.", "It knows your wage total.", "The bell rings without moving."],
+      action: "alarm",
+      risk: "Danger",
+      aura: "danger",
+      marks: ["mark-eye", "mark-shadow", "mark-star"]
+    }
+  ];
+
+  const state = {
+    night: 1,
+    caseIndex: 0,
+    sanity: 100,
+    wage: 0,
+    errors: 0,
+    activeCases: [],
+    locked: true,
+    finished: false
+  };
+
+  const el = {
+    nightNumber: document.getElementById("nightNumber"),
+    caseCounter: document.getElementById("caseCounter"),
+    clockFill: document.getElementById("clockFill"),
+    sanityValue: document.getElementById("sanityValue"),
+    wageValue: document.getElementById("wageValue"),
+    errorValue: document.getElementById("errorValue"),
+    patientKind: document.getElementById("patientKind"),
+    patientName: document.getElementById("patientName"),
+    caseText: document.getElementById("caseText"),
+    clueList: document.getElementById("clueList"),
+    riskBadge: document.getElementById("riskBadge"),
+    resultBox: document.getElementById("resultBox"),
+    nextButton: document.getElementById("nextButton"),
+    patientSprite: document.getElementById("patientSprite"),
+    patientAura: document.getElementById("patientAura"),
+    spriteMarks: document.getElementById("spriteMarks"),
+    logList: document.getElementById("logList")
+  };
+
+  const actionLabel = {
+    treat: "Treat",
+    quarantine: "Quarantine",
+    comfort: "Comfort",
+    alarm: "Alarm"
+  };
+
+  function shuffle(source) {
+    return [...source].sort(() => Math.random() - 0.5);
+  }
+
+  function startNight() {
+    state.activeCases = shuffle(cases).slice(0, 6);
+    state.caseIndex = 0;
+    state.locked = false;
+    state.finished = false;
+    el.logList.innerHTML = "";
+    el.nextButton.textContent = "Next patient";
+    renderCase();
+    updateStats();
+  }
+
+  function renderCase() {
+    const current = state.activeCases[state.caseIndex];
+    if (!current) return endNight();
+
+    el.nightNumber.textContent = state.night;
+    el.caseCounter.textContent = `Case ${state.caseIndex + 1} of ${state.activeCases.length}`;
+    el.clockFill.style.width = `${(state.caseIndex / state.activeCases.length) * 100}%`;
+    el.patientKind.textContent = current.kind;
+    el.patientName.textContent = current.name;
+    el.caseText.textContent = current.text;
+    el.riskBadge.textContent = current.risk;
+    el.clueList.innerHTML = current.clues.map(clue => `<li>${clue}</li>`).join("");
+    el.resultBox.textContent = "Read the clues, then choose the safest triage response.";
+    el.resultBox.className = "result-box";
+    el.patientSprite.style.setProperty("--sprite-color", current.color);
+    el.patientSprite.classList.add("float");
+    el.patientAura.className = `patient-aura ${current.aura}`;
+    el.spriteMarks.innerHTML = current.marks.map(mark => `<span class="${mark}"></span>`).join("");
+    document.querySelectorAll(".action-btn").forEach(button => { button.disabled = false; });
+    state.locked = false;
+  }
+
+  function updateStats() {
+    el.sanityValue.textContent = state.sanity;
+    el.wageValue.textContent = `$${state.wage}`;
+    el.errorValue.textContent = state.errors;
+  }
+
+  function chooseAction(action) {
+    if (state.locked || state.finished) return;
+    const current = state.activeCases[state.caseIndex];
+    const correct = action === current.action;
+    state.locked = true;
+    document.querySelectorAll(".action-btn").forEach(button => { button.disabled = true; });
+
+    if (correct) {
+      state.wage += current.risk === "Danger" ? 90 : 55;
+      state.sanity = Math.min(100, state.sanity + 3);
+      el.resultBox.className = "result-box good";
+      el.resultBox.textContent = `Correct. ${current.name} was handled with ${actionLabel[action].toLowerCase()}. The clinic hums a little softer.`;
+    } else {
+      const loss = current.risk === "Danger" ? 28 : 16;
+      state.sanity = Math.max(0, state.sanity - loss);
+      state.errors += 1;
+      el.resultBox.className = "result-box bad";
+      el.resultBox.textContent = `Wrong call. ${current.name} needed ${actionLabel[current.action].toLowerCase()}. The ward lights flicker.`;
+    }
+
+    const log = document.createElement("li");
+    log.textContent = `${current.name} the ${current.kind}: ${correct ? "cleared" : "incident"} (${actionLabel[action]}).`;
+    el.logList.prepend(log);
+    updateStats();
+    el.clockFill.style.width = `${((state.caseIndex + 1) / state.activeCases.length) * 100}%`;
+    el.nextButton.textContent = state.caseIndex + 1 >= state.activeCases.length ? "End night" : "Next patient";
+  }
+
+  function nextStep() {
+    if (state.finished || state.activeCases.length === 0) {
+      state.sanity = 100;
+      state.wage = 0;
+      state.errors = 0;
+      startNight();
+      return;
+    }
+    if (!state.locked) return;
+    state.caseIndex += 1;
+    renderCase();
+  }
+
+  function endNight() {
+    state.finished = true;
+    state.locked = true;
+    document.querySelectorAll(".action-btn").forEach(button => { button.disabled = true; });
+    const survived = state.sanity > 0 && state.errors < 4;
+    const bonus = survived ? 120 : 0;
+    state.wage += bonus;
+    updateStats();
+    el.caseCounter.textContent = "Shift complete";
+    el.clockFill.style.width = "100%";
+    el.patientKind.textContent = survived ? "Dawn report" : "Incident report";
+    el.patientName.textContent = survived ? "Clinic survived" : "Clinic sealed";
+    el.caseText.textContent = survived
+      ? `You made it to sunrise with ${state.errors} incident${state.errors === 1 ? "" : "s"}. Bonus paid: $${bonus}.`
+      : "The emergency shutters came down before sunrise. The sprites will remember this night.";
+    el.clueList.innerHTML = [
+      `<li>Final sanity: ${state.sanity}</li>`,
+      `<li>Total wage: $${state.wage}</li>`,
+      `<li>Errors recorded: ${state.errors}</li>`
+    ].join("");
+    el.riskBadge.textContent = survived ? "Survived" : "Sealed";
+    el.resultBox.className = survived ? "result-box good" : "result-box bad";
+    el.resultBox.textContent = survived ? "The waiting room smells like warm milk and morning rain." : "Something in the ward learned your name.";
+    el.nextButton.textContent = state.night >= 3 ? "Restart" : "Next night";
+    state.night = state.night >= 3 ? 1 : state.night + 1;
+  }
+
+  document.querySelectorAll(".action-btn").forEach(button => {
+    button.addEventListener("click", () => chooseAction(button.dataset.action));
+    button.disabled = true;
+  });
+
+  el.nextButton.addEventListener("click", () => {
+    if (state.activeCases.length === 0) startNight();
+    else nextStep();
+  });
+
+  el.caseText.textContent = "The clinic opens at midnight. Start the shift when you are ready.";
+  el.clueList.innerHTML = "<li>Q-version sprite animals arrive one by one.</li><li>Normal illness, panic, anomaly, and danger require different responses.</li><li>Survive three nights to keep the clinic license.</li>";
+})();
+</script>
