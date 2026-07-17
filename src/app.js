@@ -78,6 +78,7 @@ const el = {
   nightmareValue: document.querySelector("#nightmareValue"),
   dustValue: document.querySelector("#dustValue"),
   patientSprite: document.querySelector("#patientSprite"),
+  patientSpriteUse: document.querySelector("#patientSpriteUse"),
   dreamMist: document.querySelector("#dreamMist"),
   patientSpecies: document.querySelector("#patientSpecies"),
   patientName: document.querySelector("#patientName"),
@@ -286,7 +287,7 @@ function renderCase() {
     return;
   }
 
-  el.patientSprite.style.setProperty("--sprite-color", patient.color);
+  el.patientSpriteUse.setAttribute("href", `./assets/atlas/critters.svg#${patient.id}`);
   el.dreamMist.className = `dream-mist ${patient.mist}`;
   el.patientSpecies.textContent = patientText(patient, "species");
   el.patientName.textContent = patientText(patient, "name");

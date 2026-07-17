@@ -17,6 +17,10 @@
   margin-bottom: 18px;
 }
 
+.clinic-header h1 {
+  text-shadow: 0 10px 34px rgba(244, 199, 107, .14);
+}
+
 .shift-summary,
 .meter-row {
   display: flex;
@@ -31,8 +35,8 @@
 .closing-board {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(23, 32, 51, .76);
-  box-shadow: 0 18px 55px var(--shadow);
+  background: rgba(19, 24, 39, .78);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, .28);
   backdrop-filter: blur(18px);
 }
 
@@ -47,7 +51,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   color: var(--muted);
-  background: rgba(23, 32, 51, .76);
+  background: rgba(19, 24, 39, .78);
   cursor: pointer;
 }
 
@@ -71,17 +75,32 @@
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px),
-    radial-gradient(circle at 50% 22%, rgba(244, 199, 107, .18), transparent 18rem),
-    linear-gradient(180deg, #24314a, #111827 68%, #0a0d18);
-  background-size: 44px 44px, 44px 44px, auto, auto;
+  background: #0d1221;
   box-shadow: 0 20px 70px var(--shadow);
+}
+
+.stage-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .98;
+}
+
+.dream-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 247, 234, .08), transparent 18rem),
+    linear-gradient(180deg, rgba(7, 11, 22, .08), rgba(7, 11, 22, .36));
 }
 
 .moon-window {
   position: absolute;
+  z-index: 1;
   top: 34px;
   right: 46px;
   width: 118px;
@@ -95,10 +114,11 @@
 
 .dream-mist {
   position: absolute;
+  z-index: 2;
   left: 50%;
   top: 48%;
-  width: 330px;
-  height: 330px;
+  width: min(42vw, 380px);
+  height: min(42vw, 380px);
   transform: translate(-50%, -50%);
   border-radius: 50%;
   filter: blur(24px);
@@ -113,6 +133,7 @@
 
 .patient-card {
   position: absolute;
+  z-index: 3;
   inset: 130px 0 auto;
   display: grid;
   place-items: center;
@@ -121,9 +142,10 @@
 
 .patient-sprite {
   position: relative;
-  width: 230px;
-  height: 286px;
-  color: var(--sprite-color, #f3bc88);
+  width: min(39vw, 278px);
+  height: min(39vw, 278px);
+  overflow: visible;
+  filter: drop-shadow(0 22px 24px rgba(0, 0, 0, .32));
   animation: breathe 3s ease-in-out infinite;
 }
 
@@ -132,160 +154,24 @@
   50% { transform: translateY(-10px) scale(1.015); }
 }
 
-.sprite-ear,
-.sprite-face,
-.sprite-body,
-.sprite-tail {
+.stage-ribbon {
   position: absolute;
-  background: currentColor;
-  border: 5px solid rgba(255, 247, 234, .66);
+  z-index: 4;
+  left: 10%;
+  right: 10%;
+  bottom: 112px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 4px solid rgba(244, 199, 107, .58);
 }
 
-.sprite-ear {
-  top: 24px;
-  width: 76px;
-  height: 92px;
-  z-index: 1;
-}
-
-.sprite-ear.left {
-  left: 28px;
-  border-radius: 60% 40% 55% 45%;
-  transform: rotate(-22deg);
-}
-
-.sprite-ear.right {
-  right: 28px;
-  border-radius: 40% 60% 45% 55%;
-  transform: rotate(22deg);
-}
-
-.sprite-face {
-  top: 74px;
-  left: 27px;
-  width: 176px;
-  height: 150px;
-  z-index: 3;
-  border-radius: 48% 48% 44% 44%;
-}
-
-.sprite-eye,
-.sprite-blush,
-.sprite-mouth {
-  position: absolute;
-}
-
-.sprite-eye {
-  top: 58px;
+.stage-ribbon span {
   width: 18px;
-  height: 26px;
-  border-radius: 999px;
-  background: #1f2030;
-  box-shadow: inset 4px 5px 0 rgba(255,255,255,.45);
-}
-
-.sprite-eye.left { left: 50px; }
-.sprite-eye.right { right: 50px; }
-
-.sprite-blush {
-  top: 91px;
-  width: 25px;
-  height: 14px;
-  border-radius: 999px;
-  background: rgba(233, 138, 168, .62);
-}
-
-.sprite-blush.left { left: 30px; }
-.sprite-blush.right { right: 30px; }
-
-.sprite-mouth {
-  top: 91px;
-  left: 78px;
-  width: 20px;
-  height: 12px;
-  border-bottom: 4px solid #1f2030;
-  border-radius: 0 0 999px 999px;
-}
-
-.sprite-body {
-  bottom: 0;
-  left: 52px;
-  width: 126px;
-  height: 112px;
-  z-index: 2;
-  border-radius: 48% 48% 36% 36%;
-}
-
-.sprite-belly {
-  position: absolute;
-  top: 26px;
-  left: 31px;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: rgba(255, 247, 234, .45);
-}
-
-.sprite-tail {
-  right: 10px;
-  bottom: 42px;
-  width: 74px;
-  height: 74px;
-  border-width: 17px;
-  border-left-color: transparent;
-  border-radius: 50%;
-  transform: rotate(24deg);
-}
-
-.nightmare-mark {
-  position: absolute;
-  z-index: 5;
-  right: 42px;
-  top: 46px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--dream) 0 34%, transparent 36%), var(--night-800);
-  box-shadow: 0 0 28px rgba(168, 146, 242, .68);
-}
-
-.workbench {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 0;
-  height: 118px;
-  border-top: 3px solid rgba(244, 199, 107, .26);
-  background: linear-gradient(180deg, #695071, #32283f);
-}
-
-.prop {
-  position: absolute;
-  bottom: 36px;
-  border-radius: 8px;
-}
-
-.prop.bottle {
-  left: 18%;
-  width: 34px;
-  height: 62px;
-  background: linear-gradient(180deg, var(--mint), rgba(125,222,178,.24));
-}
-
-.prop.chart {
-  left: 46%;
-  width: 92px;
-  height: 48px;
-  background: var(--paper);
-  transform: rotate(-4deg);
-}
-
-.prop.bell {
-  right: 17%;
-  width: 54px;
-  height: 42px;
-  border-radius: 50% 50% 8px 8px;
+  height: 45px;
+  margin-top: -22px;
+  border-radius: 999px 999px 4px 4px;
   background: var(--moon);
+  box-shadow: 0 0 18px rgba(244, 199, 107, .34);
 }
 
 .case-board {
@@ -314,6 +200,9 @@
 .dream-chart {
   min-height: 285px;
   padding: 18px;
+  background:
+    linear-gradient(135deg, rgba(243, 223, 189, .1), transparent 42%),
+    rgba(19, 24, 39, .84);
 }
 
 .chart-heading {
@@ -369,10 +258,28 @@
 }
 
 .choice-button {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: center;
   min-height: 78px;
   padding: 12px;
   text-align: left;
   background: rgba(255, 247, 234, .07);
+}
+
+.choice-button i {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--paper);
+  font-style: normal;
+  font-weight: 900;
 }
 
 .choice-button:hover,
@@ -401,6 +308,7 @@
   min-height: 96px;
   padding: 14px;
   color: var(--muted);
+  border-left: 4px solid var(--moon);
 }
 
 .result-panel.is-good { color: var(--mint); }
@@ -408,7 +316,7 @@
 
 .primary-action {
   min-height: 50px;
-  color: #1b1720;
+  color: var(--ink);
   background: linear-gradient(135deg, var(--moon), var(--mint));
   font-weight: 900;
 }
@@ -467,7 +375,7 @@
   }
 
   .patient-sprite {
-    width: 185px;
-    height: 235px;
+    width: 205px;
+    height: 205px;
   }
 }

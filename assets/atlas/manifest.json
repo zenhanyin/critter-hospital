@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "style": "cozy-spooky dream clinic, cute chibi critters, warm gothic storybook",
+  "generatedSheets": {
+    "atlasConcept": "assets/atlas/goodnight-clinic-atlas-v1.png",
+    "uiLayer": "assets/atlas/goodnight-clinic-ui-layer-v1.png"
+  },
+  "stage": "assets/atlas/clinic-stage.svg",
+  "critters": {
+    "luma-moonbun": {
+      "sprite": "assets/atlas/critters.svg#luma-moonbun",
+      "role": "soft wish patient"
+    },
+    "mori-mossfox": {
+      "sprite": "assets/atlas/critters.svg#mori-mossfox",
+      "role": "quiet regret patient"
+    },
+    "nini-glass-hamster": {
+      "sprite": "assets/atlas/critters.svg#nini-glass-hamster",
+      "role": "sharp feeling patient"
+    },
+    "puff-cloudcat": {
+      "sprite": "assets/atlas/critters.svg#puff-cloudcat",
+      "role": "sky wish patient"
+    },
+    "fenn-lanterndeer": {
+      "sprite": "assets/atlas/critters.svg#fenn-lanterndeer",
+      "role": "dim courage patient"
+    },
+    "no7-unknown-kit": {
+      "sprite": "assets/atlas/critters.svg#no7-unknown-kit",
+      "role": "sealed fear patient"
+    }
+  }
+}

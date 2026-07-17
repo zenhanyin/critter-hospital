@@ -37,30 +37,16 @@
 
       <main class="game-layout">
         <section class="dream-stage" aria-label="梦境患者" data-i18n-aria="aria.dreamPatient">
+          <img class="stage-art" src="./assets/atlas/clinic-stage.svg" alt="" aria-hidden="true">
           <div class="moon-window" aria-hidden="true"></div>
           <div id="dreamMist" class="dream-mist is-soft" aria-hidden="true"></div>
           <div class="patient-card" aria-live="polite">
-            <div id="patientSprite" class="patient-sprite" role="img" aria-label="当前梦境小动物" data-i18n-aria="aria.currentCritter">
-              <span class="sprite-ear left"></span>
-              <span class="sprite-ear right"></span>
-              <span class="sprite-face">
-                <span class="sprite-eye left"></span>
-                <span class="sprite-eye right"></span>
-                <span class="sprite-blush left"></span>
-                <span class="sprite-blush right"></span>
-                <span class="sprite-mouth"></span>
-              </span>
-              <span class="sprite-body">
-                <span class="sprite-belly"></span>
-              </span>
-              <span class="sprite-tail"></span>
-              <span id="nightmareMark" class="nightmare-mark"></span>
-            </div>
+            <svg id="patientSprite" class="patient-sprite" viewBox="0 0 256 256" role="img" aria-label="当前梦境小动物" data-i18n-aria="aria.currentCritter">
+              <use id="patientSpriteUse" href="./assets/atlas/critters.svg#luma-moonbun"></use>
+            </svg>
           </div>
-          <div class="workbench" aria-hidden="true">
-            <span class="prop bottle"></span>
-            <span class="prop chart"></span>
-            <span class="prop bell"></span>
+          <div class="stage-ribbon" aria-hidden="true">
+            <span></span><span></span><span></span>
           </div>
         </section>
 
@@ -94,18 +80,22 @@
 
           <div class="choice-grid" aria-label="梦境处方选择" data-i18n-aria="aria.choices">
             <button type="button" class="choice-button" data-action="listen">
+              <i aria-hidden="true">?</i>
               <span data-i18n="actions.listen.label">倾听</span>
               <small data-i18n="actions.listen.help">找到真正的愿望</small>
             </button>
             <button type="button" class="choice-button" data-action="soothe">
+              <i aria-hidden="true">~</i>
               <span data-i18n="actions.soothe.label">安抚</span>
               <small data-i18n="actions.soothe.help">稳住颤抖的噩梦</small>
             </button>
             <button type="button" class="choice-button" data-action="bottle">
+              <i aria-hidden="true">!</i>
               <span data-i18n="actions.bottle.label">收瓶</span>
               <small data-i18n="actions.bottle.help">封存刺人的梦</small>
             </button>
             <button type="button" class="choice-button" data-action="wake">
+              <i aria-hidden="true">↑</i>
               <span data-i18n="actions.wake.label">唤醒</span>
               <small data-i18n="actions.wake.help">回到明天早晨</small>
             </button>

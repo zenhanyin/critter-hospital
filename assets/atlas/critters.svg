@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="256" viewBox="0 0 1536 256">
+  <defs>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="145%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#080a15" flood-opacity=".34"/>
+    </filter>
+    <radialGradient id="belly" cx="50%" cy="42%" r="58%">
+      <stop offset="0" stop-color="#fff7ea" stop-opacity=".86"/>
+      <stop offset="1" stop-color="#fff7ea" stop-opacity=".3"/>
+    </radialGradient>
+    <style>
+      .line{stroke:#fff7ea;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+      .thin{stroke:#1d2030;stroke-width:5;stroke-linecap:round}
+      .eye{fill:#1d2030}
+      .shine{fill:#fff7ea;opacity:.78}
+      .blush{fill:#ee94ac;opacity:.68}
+      .mark{fill:#20243b;stroke:#a892f2;stroke-width:5}
+      .spark{fill:#f4c76b}
+    </style>
+    <symbol id="luma-moonbun" viewBox="0 0 256 256">
+      <g filter="url(#soft-shadow)">
+        <ellipse cx="88" cy="73" rx="28" ry="54" fill="#f3bc88" class="line" transform="rotate(-18 88 73)"/>
+        <ellipse cx="168" cy="73" rx="28" ry="54" fill="#f3bc88" class="line" transform="rotate(18 168 73)"/>
+        <path d="M65 133c0-44 30-74 63-74s63 30 63 74c0 45-29 70-63 70s-63-25-63-70z" fill="#f3bc88" class="line"/>
+        <ellipse cx="128" cy="166" rx="42" ry="36" fill="url(#belly)"/>
+        <circle cx="103" cy="123" r="10" class="eye"/><circle cx="153" cy="123" r="10" class="eye"/>
+        <circle cx="107" cy="119" r="3.5" class="shine"/><circle cx="157" cy="119" r="3.5" class="shine"/>
+        <ellipse cx="91" cy="148" rx="15" ry="8" class="blush"/><ellipse cx="165" cy="148" rx="15" ry="8" class="blush"/>
+        <path d="M119 146q9 9 18 0" fill="none" class="thin"/>
+        <circle cx="170" cy="70" r="18" class="mark"/>
+        <path d="M169 61v17m-8-9h17" stroke="#7ddeb2" stroke-width="4" stroke-linecap="round"/>
+        <path d="M63 185q-20 7-33-7" fill="none" stroke="#f4c76b" stroke-width="9" stroke-linecap="round"/>
+      </g>
+    </symbol>
+    <symbol id="mori-mossfox" viewBox="0 0 256 256">
+      <g filter="url(#soft-shadow)">
+        <path d="M74 97 55 45l47 31M182 97l19-52-47 31" fill="#91d79b" class="line"/>
+        <path d="M55 136c0-43 32-73 73-73s73 30 73 73c0 44-30 70-73 70s-73-26-73-70z" fill="#91d79b" class="line"/>
+        <path d="M90 91q38 18 76 0" fill="none" stroke="#5b8c64" stroke-width="12" stroke-linecap="round"/>
+        <ellipse cx="128" cy="168" rx="44" ry="31" fill="url(#belly)"/>
+        <circle cx="103" cy="125" r="10" class="eye"/><circle cx="153" cy="125" r="10" class="eye"/>
+        <circle cx="107" cy="121" r="3.5" class="shine"/><circle cx="157" cy="121" r="3.5" class="shine"/>
+        <path d="M119 150q9 7 18 0" fill="none" class="thin"/>
+        <ellipse cx="89" cy="150" rx="14" ry="8" class="blush"/><ellipse cx="167" cy="150" rx="14" ry="8" class="blush"/>
+        <path d="M190 175q35-2 31 28-22 6-45-10" fill="#91d79b" class="line"/>
+        <circle cx="67" cy="69" r="10" class="spark"/><circle cx="83" cy="58" r="7" fill="#7ddeb2"/>
+      </g>
+    </symbol>
+    <symbol id="nini-glass-hamster" viewBox="0 0 256 256">
+      <g filter="url(#soft-shadow)">
+        <circle cx="83" cy="91" r="31" fill="#9fd8ff" class="line" opacity=".82"/>
+        <circle cx="173" cy="91" r="31" fill="#9fd8ff" class="line" opacity=".82"/>
+        <path d="M59 137c0-45 30-76 69-76s69 31 69 76c0 43-27 70-69 70s-69-27-69-70z" fill="#9fd8ff" class="line" opacity=".82"/>
+        <path d="M89 88q39-22 78 0" fill="none" stroke="#fff7ea" stroke-width="5" opacity=".6"/>
+        <ellipse cx="128" cy="169" rx="42" ry="33" fill="#fff7ea" opacity=".32"/>
+        <circle cx="103" cy="126" r="10" class="eye"/><circle cx="153" cy="126" r="10" class="eye"/>
+        <circle cx="107" cy="122" r="3.5" class="shine"/><circle cx="157" cy="122" r="3.5" class="shine"/>
+        <path d="M119 151q9 6 18 0" fill="none" class="thin"/>
+        <path d="M133 80c15 15 12 33 2 45 15-9 27-6 35 8" fill="none" stroke="#a892f2" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="174" cy="78" r="17" class="mark"/>
+      </g>
+    </symbol>
+    <symbol id="puff-cloudcat" viewBox="0 0 256 256">
+      <g filter="url(#soft-shadow)">
+        <path d="M80 99 67 56l41 24M176 99l13-43-41 24" fill="#f4f1ff" class="line"/>
+        <path d="M49 151c0-20 14-36 33-39 6-31 31-51 62-45 24 5 40 24 43 49 15 5 25 19 25 36 0 33-33 52-82 52s-81-19-81-53z" fill="#f4f1ff" class="line"/>
+        <circle cx="104" cy="133" r="10" class="eye"/><circle cx="154" cy="133" r="10" class="eye"/>
+        <circle cx="108" cy="129" r="3.5" class="shine"/><circle cx="158" cy="129" r="3.5" class="shine"/>
+        <path d="M120 156q8 8 17 0" fill="none" class="thin"/>
+        <ellipse cx="89" cy="154" rx="15" ry="8" class="blush"/><ellipse cx="169" cy="154" rx="15" ry="8" class="blush"/>
+        <path d="M56 127q-27-13-38 7 15 19 42 10M199 126q27-13 39 7-15 19-42 10" fill="#dfe8ff" class="line"/>
+        <path d="M130 76q9-26 29-29" fill="none" stroke="#f4c76b" stroke-width="7" stroke-linecap="round"/>
+      </g>
+    </symbol>
+    <symbol id="fenn-lanterndeer" viewBox="0 0 256 256">
+      <g filter="url(#soft-shadow)">
+        <path d="M92 80q-17-34-5-53m77 53q17-34 5-53M94 54H72m90 0h22" fill="none" stroke="#ffd26f" stroke-width="10" stroke-linecap="round"/>
+        <path d="M61 136c0-45 29-75 67-75s67 30 67 75c0 44-27 70-67 70s-67-26-67-70z" fill="#ffd26f" class="line"/>
+        <ellipse cx="128" cy="169" rx="41" ry="31" fill="url(#belly)"/>
+        <circle cx="104" cy="126" r="10" class="eye"/><circle cx="152" cy="126" r="10" class="eye"/>
+        <circle cx="108" cy="122" r="3.5" class="shine"/><circle cx="156" cy="122" r="3.5" class="shine"/>
+        <path d="M119 150q9 7 18 0" fill="none" class="thin"/>
+        <path d="M128 42c16 12 17 30 0 42-17-12-16-30 0-42z" fill="#f4c76b" stroke="#fff7ea" stroke-width="5"/>
+        <ellipse cx="89" cy="150" rx="14" ry="8" class="blush"/><ellipse cx="167" cy="150" rx="14" ry="8" class="blush"/>
+      </g>
+    </symbol>
+    <symbol id="no7-unknown-kit" viewBox="0 0 256 256">
+      <g filter="url(#soft-shadow)">
+        <path d="M79 96 58 51l45 24M177 96l21-45-45 24" fill="#ff9aa2" class="line"/>
+        <path d="M55 136c0-46 31-77 73-77s73 31 73 77c0 44-30 70-73 70s-73-26-73-70z" fill="#ff9aa2" class="line"/>
+        <ellipse cx="128" cy="169" rx="43" ry="31" fill="url(#belly)"/>
+        <circle cx="103" cy="126" r="10" class="eye"/><circle cx="153" cy="126" r="10" class="eye"/>
+        <circle cx="107" cy="122" r="3.5" class="shine"/><circle cx="157" cy="122" r="3.5" class="shine"/>
+        <path d="M119 151q9 5 18 0" fill="none" class="thin"/>
+        <path d="M95 88q33-20 66 0" fill="none" stroke="#7ddeb2" stroke-width="5" stroke-linecap="round"/>
+        <rect x="96" y="184" width="64" height="27" rx="12" fill="#fff7ea" opacity=".78"/>
+        <path d="M121 200h14" stroke="#1d2030" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="174" cy="78" r="17" class="mark"/>
+      </g>
+    </symbol>
+  </defs>
+  <use href="#luma-moonbun" x="0" y="0" width="256" height="256"/>
+  <use href="#mori-mossfox" x="256" y="0" width="256" height="256"/>
+  <use href="#nini-glass-hamster" x="512" y="0" width="256" height="256"/>
+  <use href="#puff-cloudcat" x="768" y="0" width="256" height="256"/>
+  <use href="#fenn-lanterndeer" x="1024" y="0" width="256" height="256"/>
+  <use href="#no7-unknown-kit" x="1280" y="0" width="256" height="256"/>
+</svg>
