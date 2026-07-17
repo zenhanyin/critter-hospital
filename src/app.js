@@ -93,6 +93,7 @@ const el = {
 
 const translationCache = new Map();
 const translationPending = new Set();
+const translationPacks = new Map();
 
 function copyAt(path) {
   return path.split(".").reduce((value, key) => value?.[key], sourceCopy) || path;
@@ -124,6 +125,8 @@ function requestRerender() {
 function translateText(text, key) {
   const source = String(text || "");
   if (!source || state.locale === BASE_LOCALE || !TRANSLATED_LOCALES.has(state.locale)) return source;
+  const packed = translationPacks.get(state.locale)?.[key];
+  if (packed) return packed;
   const keyName = cacheKey(state.locale, key, source);
   if (translationCache.has(keyName)) return translationCache.get(keyName);
   const stored = readCachedTranslation(keyName);
@@ -202,6 +205,17 @@ async function loadAudioConfig() {
   const response = await fetch("./data/audio.json", { cache: "no-store" });
   if (!response.ok) return;
   state.audio = await response.json();
+}
+
+async function loadTranslationPacks() {
+  await Promise.all([...TRANSLATED_LOCALES].map(async (locale) => {
+    try {
+      const response = await fetch(`./data/i18n/${locale}.json`, { cache: "no-store" });
+      if (!response.ok) return;
+      const pack = await response.json();
+      translationPacks.set(locale, pack.strings || {});
+    } catch (error) {}
+  }));
 }
 
 function soundSource(kind, key) {
@@ -423,7 +437,7 @@ el.audioToggle.addEventListener("click", () => {
   }
 });
 
-Promise.all([loadCases(), loadAudioConfig()])
+Promise.all([loadCases(), loadAudioConfig(), loadTranslationPacks()])
   .then(() => {
     setChoiceDisabled(true);
     updateMeters();
