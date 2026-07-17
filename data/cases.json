@@ -4,105 +4,105 @@
   "patients": [
     {
       "id": "luma-moonbun",
-      "name": "Luma",
-      "species": "Moonbun",
-      "tone": "soft ache",
+      "name": "露玛",
+      "species": "月兔团",
+      "tone": "柔软的难过",
       "color": "#f3bc88",
       "mist": "is-soft",
-      "intro": "Luma keeps dreaming of a ladder made of moonlight. Every step breaks before the top.",
+      "intro": "露玛总是梦见一架月光做成的梯子。每爬到快要够着月亮时，下一阶就碎掉了。",
       "clues": [
-        "The nightmare smells like warm milk and old paper.",
-        "Luma says the moon never answers letters.",
-        "A tiny envelope is tucked under one paw."
+        "噩梦闻起来像温热的牛奶和旧信纸。",
+        "露玛说月亮从来不回信。",
+        "一只小信封压在她的爪子下面。"
       ],
       "need": "listen",
-      "dreamGift": "A moonlit mailbox that rings once, even when the answer is still far away.",
-      "morningAnchor": "Tomorrow, Luma will write the first real letter instead of waiting for the perfect one."
+      "dreamGift": "诊所送给她一只月光邮箱，就算答案还很远，也会轻轻响一声。",
+      "morningAnchor": "明天，露玛会先写出第一封真正的信，而不是继续等一封完美的信。"
     },
     {
       "id": "mori-mossfox",
-      "name": "Mori",
-      "species": "Moss Fox",
-      "tone": "quiet regret",
+      "name": "森森",
+      "species": "苔狐",
+      "tone": "安静的遗憾",
       "color": "#91d79b",
       "mist": "is-ache",
-      "intro": "Mori's dream forest loops forever. A friend keeps waving from the path he did not take.",
+      "intro": "森森的梦里有一片走不出去的森林。没来得及告别的朋友，总在另一条小路尽头朝他挥手。",
       "clues": [
-        "The same leaf falls every twelve seconds.",
-        "Mori apologizes before anyone speaks.",
-        "A seed glows whenever the dream turns backward."
+        "同一片叶子每十二秒落下一次。",
+        "森森总是在别人开口前先道歉。",
+        "有一粒种子会在梦倒退时发光。"
       ],
       "need": "soothe",
-      "dreamGift": "A clearing where the missed goodbye can be spoken without the forest ending.",
-      "morningAnchor": "Mori wakes with one seed to plant beside the old road."
+      "dreamGift": "诊所为他开出一片空地，让那句迟到的告别终于可以被说完。",
+      "morningAnchor": "醒来后，森森会把那粒种子种在旧路旁边。"
     },
     {
       "id": "nini-glass-hamster",
-      "name": "Nini",
-      "species": "Glass Hamster",
-      "tone": "sharp dream",
+      "name": "妮妮",
+      "species": "玻璃仓鼠",
+      "tone": "刺人的梦",
       "color": "#9fd8ff",
       "mist": "is-sharp",
-      "intro": "Nini is transparent tonight. A dark little storm keeps tapping from inside her chest.",
+      "intro": "妮妮今晚几乎是透明的。胸口里有一小团黑雨，一直敲着玻璃。",
       "clues": [
-        "The storm grows louder when the room is silent.",
-        "Nini laughs whenever she is about to cry.",
-        "Her shadow is trying to hide under the clipboard."
+        "房间越安静，雨声越大。",
+        "妮妮快哭的时候，总会先笑出来。",
+        "她的影子躲在病历夹下面。"
       ],
       "need": "bottle",
-      "dreamGift": "A corked rain bottle, small enough to hold and safe enough to open later.",
-      "morningAnchor": "Nini learns she can name a feeling before it fills the whole room."
+      "dreamGift": "诊所把黑雨收进一只带软木塞的小瓶，等她准备好时再慢慢打开。",
+      "morningAnchor": "明天，妮妮会先说出一个感受的名字，不让它填满整个房间。"
     },
     {
       "id": "puff-cloudcat",
-      "name": "Puff",
-      "species": "Cloud Cat",
-      "tone": "sky wish",
+      "name": "噗芙",
+      "species": "云猫",
+      "tone": "天空愿望",
       "color": "#f4f1ff",
       "mist": "is-gift",
-      "intro": "Puff wants wings, but every dream flight ends with the city lights drifting away.",
+      "intro": "噗芙想要一对翅膀，可每次飞起来，城市的灯都会离她越来越远。",
       "clues": [
-        "The wind chime only rings when Puff looks down.",
-        "Pawprints appear on the ceiling.",
-        "Puff whispers that roofs are almost skies."
+        "风铃只在她低头时响。",
+        "天花板上出现了一串爪印。",
+        "噗芙小声说，屋顶几乎就是天空。"
       ],
       "need": "listen",
-      "dreamGift": "One safe flight over the rooftops, with every window glowing hello.",
-      "morningAnchor": "Puff decides to climb to the roof tomorrow and watch the sunrise from there."
+      "dreamGift": "诊所送她一场安全的屋顶飞行，每扇窗都亮着欢迎她回来。",
+      "morningAnchor": "明天，噗芙会爬上屋顶，看一次真正的日出。"
     },
     {
       "id": "fenn-lanterndeer",
-      "name": "Fenn",
-      "species": "Lantern Deer",
-      "tone": "dim courage",
+      "name": "芬恩",
+      "species": "灯鹿",
+      "tone": "微弱的勇气",
       "color": "#ffd26f",
       "mist": "is-soft",
-      "intro": "Fenn's lantern goes out whenever the dream asks him to step onto a stage.",
+      "intro": "梦一要求芬恩走上舞台，他角上的小灯就会灭掉。",
       "clues": [
-        "Tiny applause hides inside the lantern glass.",
-        "Fenn knows the song but not the first note.",
-        "The nightmare is brightest just before he begins."
+        "灯罩里藏着很小很小的掌声。",
+        "芬恩记得整首歌，却找不到第一个音。",
+        "噩梦总在他准备开始前变得最亮。"
       ],
       "need": "soothe",
-      "dreamGift": "A stage where the first note can tremble and still count.",
-      "morningAnchor": "Fenn wakes ready to sing badly once, which is how songs begin."
+      "dreamGift": "诊所为他点亮一座允许颤抖的舞台，第一声跑调也算数。",
+      "morningAnchor": "明天，芬恩会先唱坏一次，因为歌就是这样开始的。"
     },
     {
       "id": "no7-unknown-kit",
-      "name": "No. 7",
-      "species": "Unknown Kit",
-      "tone": "sealed fear",
+      "name": "七号",
+      "species": "未知幼兽",
+      "tone": "封住的害怕",
       "color": "#ff9aa2",
       "mist": "is-sharp",
-      "intro": "No. 7 arrives with no name tag. The dream door behind them locks itself twice.",
+      "intro": "七号没有名字牌。她身后的梦门自己上了两道锁。",
       "clues": [
-        "The nightmare repeats your last sentence in a smaller voice.",
-        "No. 7 flinches when called monster.",
-        "A blank collar waits beside the dream door."
+        "噩梦会用更小的声音重复你上一句话。",
+        "有人叫她怪物时，七号会立刻缩起来。",
+        "一枚空白项圈放在梦门旁边。"
       ],
       "need": "bottle",
-      "dreamGift": "A quiet room where the word monster turns back into the word scared.",
-      "morningAnchor": "No. 7 leaves with a blank tag and permission to choose a name later."
+      "dreamGift": "诊所给她一间安静房间，让怪物这个词慢慢变回害怕。",
+      "morningAnchor": "七号带着空白名字牌离开，她可以晚一点再决定自己叫什么。"
     }
   ]
 }

@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Goodnight Clinic</title>
+    <title>晚安诊所</title>
     <meta
+      id="pageDescription"
       name="description"
-      content="A cozy spooky dream clinic game about collecting nightmares and sending critters home with gentle dreams."
+      content="一款温馨轻怪谈梦境诊所游戏：回收小动物的噩梦，再把它们送回能面对明天的美梦里。"
     >
     <link rel="stylesheet" href="./styles/theme.css">
     <link rel="stylesheet" href="./styles/app.css">
@@ -15,23 +16,31 @@
     <div id="app" class="app-shell">
       <header class="clinic-header">
         <div>
-          <p class="eyebrow">Midnight dream repair</p>
-          <h1>Goodnight Clinic</h1>
+          <p class="eyebrow" data-i18n="hero.eyebrow">午夜梦境修复</p>
+          <h1 data-i18n="hero.title">晚安诊所</h1>
         </div>
-        <div class="shift-summary" aria-label="Shift status">
-          <span>Night <strong id="nightValue">1</strong></span>
-          <span>Case <strong id="caseValue">1</strong>/<strong id="caseTotal">5</strong></span>
-          <span>Hope <strong id="hopeValue">3</strong></span>
-          <button id="audioToggle" type="button" class="audio-toggle" aria-pressed="false">Sound off</button>
+        <div class="shift-summary" aria-label="值夜状态">
+          <span><span data-i18n="status.nightPrefix">第</span> <strong id="nightValue">1</strong> <span data-i18n="status.nightSuffix">夜</span></span>
+          <span><span data-i18n="status.case">病例</span> <strong id="caseValue">1</strong>/<strong id="caseTotal">5</strong></span>
+          <span><span data-i18n="status.hope">希望</span> <strong id="hopeValue">3</strong></span>
+          <select id="languageSelect" class="audio-toggle" aria-label="语言">
+            <option value="zh-CN">中文</option>
+            <option value="en">English</option>
+            <option value="ja-JP">日本語</option>
+            <option value="ko-KR">한국어</option>
+            <option value="es-ES">Español</option>
+            <option value="fr-FR">Français</option>
+          </select>
+          <button id="audioToggle" type="button" class="audio-toggle" aria-pressed="false">声音关</button>
         </div>
       </header>
 
       <main class="game-layout">
-        <section class="dream-stage" aria-label="Dream patient">
+        <section class="dream-stage" aria-label="梦境患者" data-i18n-aria="aria.dreamPatient">
           <div class="moon-window" aria-hidden="true"></div>
           <div id="dreamMist" class="dream-mist is-soft" aria-hidden="true"></div>
           <div class="patient-card" aria-live="polite">
-            <div id="patientSprite" class="patient-sprite" role="img" aria-label="Current dream critter">
+            <div id="patientSprite" class="patient-sprite" role="img" aria-label="当前梦境小动物" data-i18n-aria="aria.currentCritter">
               <span class="sprite-ear left"></span>
               <span class="sprite-ear right"></span>
               <span class="sprite-face">
@@ -55,18 +64,18 @@
           </div>
         </section>
 
-        <section class="case-board" aria-label="Dream chart">
+        <section class="case-board" aria-label="梦境病历" data-i18n-aria="aria.dreamChart">
           <div class="meter-row">
             <div>
-              <span>Warmth</span>
+              <span data-i18n="meters.warmth">暖意</span>
               <strong id="warmthValue">80</strong>
             </div>
             <div>
-              <span>Nightmares</span>
+              <span data-i18n="meters.nightmares">噩梦</span>
               <strong id="nightmareValue">0</strong>
             </div>
             <div>
-              <span>Dream dust</span>
+              <span data-i18n="meters.dust">梦尘</span>
               <strong id="dustValue">0</strong>
             </div>
           </div>
@@ -74,45 +83,45 @@
           <article class="dream-chart">
             <div class="chart-heading">
               <div>
-                <p id="patientSpecies" class="eyebrow">Moonbun</p>
-                <h2 id="patientName">Luma</h2>
+                <p id="patientSpecies" class="eyebrow">月兔团</p>
+                <h2 id="patientName">露玛</h2>
               </div>
-              <span id="toneBadge" class="tone-badge">soft ache</span>
+              <span id="toneBadge" class="tone-badge">柔软的难过</span>
             </div>
             <p id="caseIntro" class="case-intro"></p>
             <ul id="clueList" class="clue-list"></ul>
           </article>
 
-          <div class="choice-grid" aria-label="Dream treatment choices">
+          <div class="choice-grid" aria-label="梦境处方选择" data-i18n-aria="aria.choices">
             <button type="button" class="choice-button" data-action="listen">
-              <span>Listen</span>
-              <small>find the real wish</small>
+              <span data-i18n="actions.listen.label">倾听</span>
+              <small data-i18n="actions.listen.help">找到真正的愿望</small>
             </button>
             <button type="button" class="choice-button" data-action="soothe">
-              <span>Soothe</span>
-              <small>steady the nightmare</small>
+              <span data-i18n="actions.soothe.label">安抚</span>
+              <small data-i18n="actions.soothe.help">稳住颤抖的噩梦</small>
             </button>
             <button type="button" class="choice-button" data-action="bottle">
-              <span>Bottle</span>
-              <small>seal the sharp dream</small>
+              <span data-i18n="actions.bottle.label">收瓶</span>
+              <small data-i18n="actions.bottle.help">封存刺人的梦</small>
             </button>
             <button type="button" class="choice-button" data-action="wake">
-              <span>Wake</span>
-              <small>return to morning</small>
+              <span data-i18n="actions.wake.label">唤醒</span>
+              <small data-i18n="actions.wake.help">回到明天早晨</small>
             </button>
           </div>
 
           <div id="resultPanel" class="result-panel" aria-live="polite">
-            Open the clinic when the moon reaches the window.
+            月亮升到窗边时，晚安诊所就开门。
           </div>
-          <button id="nextButton" type="button" class="primary-action">Open clinic</button>
+          <button id="nextButton" type="button" class="primary-action">开门值夜</button>
         </section>
       </main>
 
-      <section class="closing-board" aria-label="Dream log">
+      <section class="closing-board" aria-label="梦境日志" data-i18n-aria="aria.dreamLog">
         <div>
-          <p class="eyebrow">Dream log</p>
-          <h2>Tonight's repairs</h2>
+          <p class="eyebrow" data-i18n="log.eyebrow">梦境日志</p>
+          <h2 data-i18n="log.title">今晚修好的梦</h2>
         </div>
         <ol id="dreamLog" class="dream-log"></ol>
       </section>
