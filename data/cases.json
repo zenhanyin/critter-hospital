@@ -1,0 +1,108 @@
+{
+  "nights": 3,
+  "casesPerNight": 5,
+  "patients": [
+    {
+      "id": "luma-moonbun",
+      "name": "Luma",
+      "species": "Moonbun",
+      "tone": "soft ache",
+      "color": "#f3bc88",
+      "mist": "is-soft",
+      "intro": "Luma keeps dreaming of a ladder made of moonlight. Every step breaks before the top.",
+      "clues": [
+        "The nightmare smells like warm milk and old paper.",
+        "Luma says the moon never answers letters.",
+        "A tiny envelope is tucked under one paw."
+      ],
+      "need": "listen",
+      "dreamGift": "A moonlit mailbox that rings once, even when the answer is still far away.",
+      "morningAnchor": "Tomorrow, Luma will write the first real letter instead of waiting for the perfect one."
+    },
+    {
+      "id": "mori-mossfox",
+      "name": "Mori",
+      "species": "Moss Fox",
+      "tone": "quiet regret",
+      "color": "#91d79b",
+      "mist": "is-ache",
+      "intro": "Mori's dream forest loops forever. A friend keeps waving from the path he did not take.",
+      "clues": [
+        "The same leaf falls every twelve seconds.",
+        "Mori apologizes before anyone speaks.",
+        "A seed glows whenever the dream turns backward."
+      ],
+      "need": "soothe",
+      "dreamGift": "A clearing where the missed goodbye can be spoken without the forest ending.",
+      "morningAnchor": "Mori wakes with one seed to plant beside the old road."
+    },
+    {
+      "id": "nini-glass-hamster",
+      "name": "Nini",
+      "species": "Glass Hamster",
+      "tone": "sharp dream",
+      "color": "#9fd8ff",
+      "mist": "is-sharp",
+      "intro": "Nini is transparent tonight. A dark little storm keeps tapping from inside her chest.",
+      "clues": [
+        "The storm grows louder when the room is silent.",
+        "Nini laughs whenever she is about to cry.",
+        "Her shadow is trying to hide under the clipboard."
+      ],
+      "need": "bottle",
+      "dreamGift": "A corked rain bottle, small enough to hold and safe enough to open later.",
+      "morningAnchor": "Nini learns she can name a feeling before it fills the whole room."
+    },
+    {
+      "id": "puff-cloudcat",
+      "name": "Puff",
+      "species": "Cloud Cat",
+      "tone": "sky wish",
+      "color": "#f4f1ff",
+      "mist": "is-gift",
+      "intro": "Puff wants wings, but every dream flight ends with the city lights drifting away.",
+      "clues": [
+        "The wind chime only rings when Puff looks down.",
+        "Pawprints appear on the ceiling.",
+        "Puff whispers that roofs are almost skies."
+      ],
+      "need": "listen",
+      "dreamGift": "One safe flight over the rooftops, with every window glowing hello.",
+      "morningAnchor": "Puff decides to climb to the roof tomorrow and watch the sunrise from there."
+    },
+    {
+      "id": "fenn-lanterndeer",
+      "name": "Fenn",
+      "species": "Lantern Deer",
+      "tone": "dim courage",
+      "color": "#ffd26f",
+      "mist": "is-soft",
+      "intro": "Fenn's lantern goes out whenever the dream asks him to step onto a stage.",
+      "clues": [
+        "Tiny applause hides inside the lantern glass.",
+        "Fenn knows the song but not the first note.",
+        "The nightmare is brightest just before he begins."
+      ],
+      "need": "soothe",
+      "dreamGift": "A stage where the first note can tremble and still count.",
+      "morningAnchor": "Fenn wakes ready to sing badly once, which is how songs begin."
+    },
+    {
+      "id": "no7-unknown-kit",
+      "name": "No. 7",
+      "species": "Unknown Kit",
+      "tone": "sealed fear",
+      "color": "#ff9aa2",
+      "mist": "is-sharp",
+      "intro": "No. 7 arrives with no name tag. The dream door behind them locks itself twice.",
+      "clues": [
+        "The nightmare repeats your last sentence in a smaller voice.",
+        "No. 7 flinches when called monster.",
+        "A blank collar waits beside the dream door."
+      ],
+      "need": "bottle",
+      "dreamGift": "A quiet room where the word monster turns back into the word scared.",
+      "morningAnchor": "No. 7 leaves with a blank tag and permission to choose a name later."
+    }
+  ]
+}

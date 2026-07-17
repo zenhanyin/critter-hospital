@@ -1,0 +1,43 @@
+{
+  "music": {
+    "clinicNight": {
+      "label": "Clinic night loop",
+      "src": "",
+      "intendedFile": "assets/audio/music/clinic-night-loop.ogg",
+      "mood": "warm midnight, soft music box, gentle suspense"
+    },
+    "dawnReport": {
+      "label": "Dawn report loop",
+      "src": "",
+      "intendedFile": "assets/audio/music/dawn-report-loop.ogg",
+      "mood": "hopeful morning, quiet piano, soft strings"
+    }
+  },
+  "sfx": {
+    "openClinic": {
+      "label": "Open clinic bell",
+      "src": "",
+      "intendedFile": "assets/audio/sfx/open-clinic-bell.ogg"
+    },
+    "choice": {
+      "label": "Choice paper tap",
+      "src": "",
+      "intendedFile": "assets/audio/sfx/choice-paper-tap.ogg"
+    },
+    "success": {
+      "label": "Dream repaired chime",
+      "src": "",
+      "intendedFile": "assets/audio/sfx/dream-repaired-chime.ogg"
+    },
+    "mistake": {
+      "label": "Nightmare bottle thrum",
+      "src": "",
+      "intendedFile": "assets/audio/sfx/nightmare-bottle-thrum.ogg"
+    },
+    "closeNight": {
+      "label": "Dawn window glow",
+      "src": "",
+      "intendedFile": "assets/audio/sfx/dawn-window-glow.ogg"
+    }
+  }
+}
